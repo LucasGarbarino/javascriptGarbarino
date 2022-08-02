@@ -1,0 +1,29 @@
+* {
+    background-color: #dee8f5;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.contenedor {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contenido-ppal {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+.aplicacion {
+    text-align: center;
+}
+
+.aside {
+    text-align: center;
+}
+
+.campo {
+    margin-top: 2rem;
+}
+
