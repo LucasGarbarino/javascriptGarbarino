@@ -23,32 +23,41 @@
     <main>
 
         <div class="contenido-ppal contenedor">
-            <div class="aplicacion">
+            <div>
                 <form class="formulario">
                     <div class="campo">
-                        <label for="nueva">Nueva Tarea</label>
-                        <input type="text" id="nueva">                
+                        <label class="campo__label" for="titulo">Nueva Tarea</label>
+                        <input class="campo__field" type="text" id="titulo" required>                
                     </div>
                     <div class="campo">
-                        <label for="texto">Descripción</label>
-                        <input type="text" id="texto">  
+                        <label class="campo__label" for="texto">Descripción</label>
+                        <textarea class="campo__field campo__field--textarea" type="textarea" id="texto"></textarea>
                     </div>
-                    <div class="campo">
-                        <button>Agregar</button>
+                    <!-- <div class="campo">
+                        <label class="campo__label" for="fecha">Fecha</label>
+                        <input class="campo__field campo__field--date" type="datetime-local" id="fecha" required>
+                    </div> -->
+                    <div>
+                        <button type="submit" class="boton" id="boton">Agregar</button>
                     </div>
                 </form>
             </div>
-            <aside class="aside">
-                <p> Mi aplicación consiste en un organizador de tareas dinámico</p>
-                <p> Las distintas tareas que se van generando, aparecerán en pantalla ordenadas en una lista</p>
-                <p> Desde la consola: <span>nuevaTarea()</span> </p>
-                <p> Para listar las tareas: <span>queTareas()</span> </p>
-            </aside>
+            <div class="lista">
+                <ul class="todo_list">
+                    <h3 class="titulo-lista"></h3>
+                    <p class="mensaje"></p>
+                    <!-- <li class="tarea">
+                        <h4 class="titulo-tarea">Nueva Tarea</h4>
+                        <p>Descripción de la tarea</p>
+                        <button class="check" id="check">Borrar</button>
+                    </li> -->
+                </ul>
+            </div>
         </div>
         
     </main>
 
-    <footer class="contenedor centrar-texto">
+    <footer class=" footer centrar-texto">
         <p class="firma">CoderHouse - Javascript - Comisión 38030 - Año 2022</p>
     </footer>
 

@@ -1,46 +1,88 @@
 let cant = 0
+
 const tareas = []
 
 class Tarea {
-    constructor (titulo, descripcion, cant, fecha) {
-        this.titulo = titulo
-        this.descripcion = descripcion
-        this.numero = cant
-        this.fecha = fecha
-    }
-}
-
-function nuevaTarea() {
-    // debugger
-    let continuar = true
-    while(continuar) {
-        let titulo = prompt('¿Qué hay que hacer?')
-        let descripcion = prompt('Añade una descripción')
-        let fecha = new Date()
-        if (titulo == '') {
-            alert('No te hagas el loco')
-        } else if(titulo != null) {
-            cant = cant + 1
-            console.log(titulo, descripcion)
-            if(cant==2) {
-                console.warn('Ahí va queriendo')
-            } if(cant == 4) {
-                console.warn('Bueno, vamo en esa')
-            } else if(cant == 6){
-                console.warn('Epa! Tomatelo con soda, no?')
-            }
+    constructor (titulo, texto, cant) {
+            this.titulo = titulo
+            this.texto = texto
+            this.numero = cant
         }
-        tareas.push(new Tarea(titulo, descripcion, cant, fecha))
-        continuar = confirm('¿Agregar nueva tarea?')
-    } 
-    if(continuar == false && cant <= 2) {
-        console.warn('Ponele un poco de onda, che')
+}
+
+
+const botonAgregar = document.getElementById("boton")
+const tituloLista = document.querySelector('.titulo-lista')
+const mensaje = document.querySelector('.mensaje')
+
+
+botonAgregar.addEventListener('click', ()=> {
+    
+    // debugger
+    
+    let toDoList = document.querySelector('.todo_list')
+    let titulo = document.querySelector('#titulo').value.toUpperCase()
+    let texto = document.querySelector('#texto').value
+
+    if (titulo == '') {
+        
+        alert('dale, agregá una tarea')
+
+    } else {
+
+        tituloLista.textContent = 'Lista de tareas'
+
+        let nuevaTarea = document.createElement('li')
+        nuevaTarea.classList.add('tarea')
+
+        let tituloTarea =  document.createElement('h4')
+        let textoTarea = document.createElement('p')
+        let check = document.createElement('button')
+
+        tituloTarea.innerText = titulo
+        tituloTarea.classList.add('titulo-tarea')
+        textoTarea.innerText = texto
+        check.innerText = 'check'
+        check.classList.add('check')
+
+        nuevaTarea.appendChild(tituloTarea)
+        nuevaTarea.appendChild(textoTarea)
+        nuevaTarea.appendChild(check)
+
+        toDoList.appendChild(nuevaTarea)
+
+        check.addEventListener('click', eliminarTarea, false);
+
+        cant++
     }
-}
+    tareas.push(new Tarea(titulo, texto, cant))
+    
+    if (cant == 2 ){
+        mensaje.textContent = 'Tranca';
+    }else if (cant == 3 ){
+        mensaje.textContent = 'Bueno, vamo en esa';
+    }else if(cant == 4){
+        mensaje.textContent = 'Tamo?';
+    }else if(cant > 4){
+        mensaje.textContent = 'Tomatelo con soda, che';
+    }
+    
+    document.querySelector('#titulo').value = ''
+    document.querySelector('#texto').value = ''
+})
 
-function queTareas() {
-    tareas.forEach(tarea => {
-        console.table(tarea)
-    })
-}
+function eliminarTarea(e) {
+    e.currentTarget.parentNode.remove()
 
+    cant--
+
+    if(cant == 1){
+        mensaje.textContent = 'Ya casi'; 
+    }else if(cant == 0){
+        tituloLista.textContent = 'Listo!';
+        mensaje.textContent = '';
+    }else{
+        tituloLista.textContent = 'Lista de Tareas';   
+    }
+    
+}
