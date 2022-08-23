@@ -18,7 +18,7 @@ const mensaje = document.querySelector('.mensaje')
 
 botonAgregar.addEventListener('click', ()=> {
     
-    debugger
+    // debugger
     
     let titulo = document.querySelector('#titulo').value.toUpperCase()
     let texto = document.querySelector('#texto').value
