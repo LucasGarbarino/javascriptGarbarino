@@ -71,7 +71,6 @@ botonAgregar.addEventListener('click', ()=> {
     
     document.querySelector('#titulo').value = ''
     document.querySelector('#texto').value = ''
-    mostrarTareas();
 
 })
 
