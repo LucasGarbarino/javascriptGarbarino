@@ -1,7 +1,6 @@
 let cant = 0
 
 const tareas = []
-
 class Tarea {
     constructor (titulo, texto) {
         this.titulo = titulo
@@ -9,11 +8,25 @@ class Tarea {
     }
 }
 
+
+function getTareas() {
+    const tareasLocal = JSON.parse(localStorage.getItem("tareasLocal"))
+    if (tareasLocal) {
+        tareasLocal.forEach(tarea => {
+            tareas.push(tarea)
+        })
+        printTareas()
+    }
+}
+
+
 const toDoList = document.querySelector('.todo_list')
 const tituloLista = document.querySelector('.titulo-lista')
 const mensaje = document.querySelector('.mensaje')
 const botonAgregar = document.getElementById("boton")
 
+const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) }
+    
 botonAgregar.addEventListener('click', ()=> {
     
     // debugger
@@ -26,6 +39,7 @@ botonAgregar.addEventListener('click', ()=> {
     tituloLista.textContent = 'Lista de tareas'
 
     printTareas()
+    
 
     if (cant == 2 ){
         mensaje.textContent = 'Tranca';
@@ -45,13 +59,14 @@ botonAgregar.addEventListener('click', ()=> {
 function printTareas() {
 
     // debugger
-    
+    guardarLocal('tareasLocal', JSON.stringify(tareas))
     toDoList.innerHTML = ''
     for (let tarea of tareas) {
         titulo = tarea.titulo
         texto = tarea.texto
         numero = tareas.indexOf(tarea)
         crearTarea(titulo, texto, numero);
+
     }
 
 }
@@ -104,7 +119,7 @@ function eliminarTarea(e) {
         tituloLista.textContent = 'Listo!';
         mensaje.textContent = '';
     }else{
-        tituloLista.textContent = 'Lista de Tareas';   
+        tituloLista.textContent = 'Lista de tareas';   
     }
     
 }

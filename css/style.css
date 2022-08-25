@@ -4,26 +4,17 @@
   --colortres: #dee8f5;
   --rojo: #79001a;
   --amarillo: #edae49;
-  --blanco: #ffffff;
-  --negro: #000000;
 }
 
 html {
   box-sizing: border-box;
   font-size: 62.5%;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--colortres);
+  background-color: var(--coloruno);
 }
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
-.contenedor {
-  max-width: 120rem;
-  width: 90%;
-  margin: 0 auto;
-}
-
 a {
   text-decoration: none;
 }
@@ -52,18 +43,21 @@ ul {
   margin: 0;
 }
 
-main {
-  height: 30rem;
+.contenedor {
+  max-width: 120rem;
+  width: 90%;
+  margin: 0 auto;
 }
+
+/* HEADER */
+
 .header {
-  background-color: var(--coloruno);
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   padding: 2rem 0;
 }
 .footer {
   margin-top: 10rem;
   padding: 4rem;
-  background-color: var(--coloruno);
   color: var(--colortres);
   text-align: center;
   background-position-y: fixed;
@@ -71,23 +65,26 @@ main {
 .barra {
   display: flex;
   justify-content: space-between;
-  color: var(--blanco);
+  color: var(--colortres);
 }
 .nombre {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
-
-.contenido-ppal {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+.lucas {
+  margin-bottom: .5rem;
 }
 
+
+/* APP */
+
+.contenido-ppal {
+  max-width: 40rem;
+}
 .formulario {
   background-color: var(--colordos);
-  padding: 3rem 2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,15 +111,15 @@ main {
   border: 1px solid var(--coloruno);
 }
 .campo__field--textarea {
-  height: 10rem;
+  height: 5rem;
   resize: none;
 }
-.campo__field--date {
+/* .campo__field--date {
   height: 2rem;
-}
+} */
 
 .boton {
-  color: var(--blanco);
+  color: var(--colortres);
   background-color: var(--coloruno);
   border: none;
   padding: 1rem 3rem;
@@ -131,23 +128,22 @@ main {
 }
 .boton:hover {
   cursor: pointer;
-  color: var(--colordos);
+  color: var(--amarillo);
   transition: .5s;
 }
 
-.lista {
-  overflow-y: scroll;
-  max-height: 30rem;
-}
-.titulo-lista {
-  color: var(--coloruno);
-  margin-bottom: 1rem;
+/* TO-DO LIST */
+.titulos {
+  margin: 3rem;
+  color: var(--colortres);
 }
 .mensaje {
   color: var(--colordos);
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   font-size: 2rem;
 }
+
+/* TAREAS */
 .tarea {
   background-color: var(--amarillo);
   margin: 0 1rem 1rem 0;
@@ -169,7 +165,6 @@ main {
 .check:hover {
   cursor: pointer;
 }
-
 li p {
   margin-bottom: 1rem;
 }
