@@ -42,30 +42,18 @@ botonAgregar.addEventListener('click', ()=> {
 
 })
 
-function eliminarTarea(e) {
+function printTareas() {
 
     // debugger
-
-    tareaNro = e.target.parentNode.id
-
-    if (tareaNro == 0) {
-        tareas.shift()
-    } else {
-        tareas.splice(tareaNro, 1)
-    }
-    printTareas()
-
-    cant--
-
-    if(cant == 1){
-        mensaje.textContent = 'Ya casi'; 
-    }else if(cant == 0){
-        tituloLista.textContent = 'Listo!';
-        mensaje.textContent = '';
-    }else{
-        tituloLista.textContent = 'Lista de Tareas';   
-    }
     
+    toDoList.innerHTML = ''
+    for (let tarea of tareas) {
+        titulo = tarea.titulo
+        texto = tarea.texto
+        numero = tareas.indexOf(tarea)
+        crearTarea(titulo, texto, numero);
+    }
+
 }
 
 function crearTarea(titulo, texto, numero) {
@@ -95,16 +83,28 @@ function crearTarea(titulo, texto, numero) {
     check.addEventListener('click', eliminarTarea, false);
 }
 
-function printTareas() {
+function eliminarTarea(e) {
 
     // debugger
-    
-    toDoList.innerHTML = ''
-    for (let tarea of tareas) {
-        titulo = tarea.titulo
-        texto = tarea.texto
-        numero = tareas.indexOf(tarea)
-        crearTarea(titulo, texto, numero);
-    }
 
+    tareaNro = e.target.parentNode.id
+
+    if (tareaNro == 0) {
+        tareas.shift()
+    } else {
+        tareas.splice(tareaNro, 1)
+    }
+    printTareas()
+
+    cant--
+
+    if(cant == 1){
+        mensaje.textContent = 'Ya casi'; 
+    }else if(cant == 0){
+        tituloLista.textContent = 'Listo!';
+        mensaje.textContent = '';
+    }else{
+        tituloLista.textContent = 'Lista de Tareas';   
+    }
+    
 }
