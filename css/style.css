@@ -52,10 +52,9 @@ ul {
   margin: 0;
 }
 
-.centrar-texto {
-  text-align: center;
+main {
+  height: 30rem;
 }
-
 .header {
   background-color: var(--coloruno);
   margin-bottom: 5rem;
@@ -63,9 +62,11 @@ ul {
 }
 .footer {
   margin-top: 10rem;
-  padding: 5rem;
+  padding: 4rem;
   background-color: var(--coloruno);
   color: var(--colortres);
+  text-align: center;
+  background-position-y: fixed;
 }
 .barra {
   display: flex;
@@ -136,7 +137,7 @@ ul {
 
 .lista {
   overflow-y: scroll;
-  max-height: 50rem;
+  max-height: 30rem;
 }
 .titulo-lista {
   color: var(--coloruno);
