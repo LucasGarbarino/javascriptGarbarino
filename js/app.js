@@ -13,47 +13,50 @@ function getTareas() {
     const tareasLocal = JSON.parse(localStorage.getItem("tareasLocal"))
     if (tareasLocal) {
         tareasLocal.forEach(tarea => {
-            tareas.push(tarea)
+            tareas.push(tarea) 
         })
+            
         printTareas()
     }
+    
 }
 
-
 const toDoList = document.querySelector('.todo_list')
-const tituloLista = document.querySelector('.titulo-lista')
+// const tituloLista = document.querySelector('.titulo-lista')
 const mensaje = document.querySelector('.mensaje')
 const botonAgregar = document.getElementById("boton")
-
 const guardarLocal = (clave, valor) => { localStorage.setItem(clave, valor) }
-    
+
+getTareas()
+
 botonAgregar.addEventListener('click', ()=> {
+        
     
-    // debugger
-    
-    cant++
     let titulo = document.querySelector('#titulo').value.toUpperCase()
     let texto = document.querySelector('#texto').value
-    tareas.push(new Tarea(titulo, texto))
 
-    tituloLista.textContent = 'Lista de tareas'
+    if (titulo != ''){
+        cant++
+        tareas.push(new Tarea(titulo, texto))
+        // tituloLista.textContent = 'Lista de tareas'
+        printTareas()
 
-    printTareas()
+        if (cant == 2 ){
+            mensaje.textContent = 'Tranca';
+        }else if (cant == 3 ){
+            mensaje.textContent = 'Bueno, vamo en esa';
+        }else if(cant == 4){
+            mensaje.textContent = 'Tamo?';
+        }else if(cant > 4){
+            mensaje.textContent = 'Tomatelo con soda, che';
+        }
     
+        document.querySelector('#titulo').value = ''
+        document.querySelector('#texto').value = ''
 
-    if (cant == 2 ){
-        mensaje.textContent = 'Tranca';
-    }else if (cant == 3 ){
-        mensaje.textContent = 'Bueno, vamo en esa';
-    }else if(cant == 4){
-        mensaje.textContent = 'Tamo?';
-    }else if(cant > 4){
-        mensaje.textContent = 'Tomatelo con soda, che';
+    } else {
+        swal('error', '#79001a')
     }
-
-    document.querySelector('#titulo').value = ''
-    document.querySelector('#texto').value = ''
-
 })
 
 function printTareas() {
@@ -79,6 +82,7 @@ function crearTarea(titulo, texto, numero) {
     let tituloTarea =  document.createElement('h4')
     tituloTarea.classList.add('titulo-tarea')
     tituloTarea.innerText = titulo
+    tituloTarea.setAttribute('id', titulo)
 
     let textoTarea = document.createElement('p')
     textoTarea.innerText = texto
@@ -87,17 +91,39 @@ function crearTarea(titulo, texto, numero) {
     check.classList.add('check')
     check.innerText = 'check'
 
+    let trash = document.createElement('i')
+    trash.classList.add('fa-solid', 'fa-trash-can')
+
     nuevaTarea.setAttribute('id', numero)
 
     nuevaTarea.appendChild(tituloTarea)
     nuevaTarea.appendChild(textoTarea)
     nuevaTarea.appendChild(check)
+    nuevaTarea.appendChild(trash)
 
     toDoList.appendChild(nuevaTarea)
 
-    check.addEventListener('click', eliminarTarea, false);
+    trash.addEventListener('click', eliminarTarea, false);
+    check.addEventListener('click', checkTarea, false)
+
 }
 
+function checkTarea(e) {
+    id = e.target.parentNode.id
+    checked = document.getElementById(id)
+    checked.classList.add('titulo-tarea__check')
+    swal('success', '#dee8f5')
+    cant--
+
+    if(cant == 1){
+        mensaje.textContent = 'Ya casi'; 
+    }else if(cant == 0){
+        mensaje.textContent = 'Listo!';
+        // mensaje.textContent = '';
+    }
+    
+
+}
 function eliminarTarea(e) {
 
     // debugger
@@ -109,17 +135,27 @@ function eliminarTarea(e) {
     } else {
         tareas.splice(tareaNro, 1)
     }
-    printTareas()
-
+    
     cant--
-
+    
     if(cant == 1){
         mensaje.textContent = 'Ya casi'; 
-    }else if(cant == 0){
-        tituloLista.textContent = 'Listo!';
-        mensaje.textContent = '';
-    }else{
-        tituloLista.textContent = 'Lista de tareas';   
+    }if (cant == 0){
+        mensaje.textContent = 'Listo!';
+        // mensaje.textContent = '';
     }
+
+    printTareas()
     
+}
+
+const swal = (icono, color)=> {
+    Swal.fire({
+        icon: icono,
+        showConfirmButton: false,
+        iconColor: color,
+        timer: 800,
+        background: 'none',
+        backdrop: 'rgba(0,0,123,0.4)'
+    })
 }

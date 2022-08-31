@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <script defer src="js/app.js"></script>
+    <script src="https://kit.fontawesome.com/13ee7b6505.js" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>JS - Lucas Garbarino</title>
 </head>
 <body>
@@ -30,7 +32,7 @@
                         <input class="campo__field" type="text" id="titulo" required>                
                     </div>
                     <div class="campo">
-                        <label class="campo__label" for="texto">Descripción</label>
+                        <label class="campo__label" for="texto">Descripción (Opcional)</label>
                         <textarea class="campo__field campo__field--textarea" type="textarea" id="texto"></textarea>
                     </div>
                     <!-- <div class="campo">
@@ -44,8 +46,8 @@
             </div>
             <div class="lista">
                 <div class="titulos">
-                    <h3 class="titulo-lista"></h3>
-                    <p class="mensaje">getTareas() para recuperar localStorage</p>
+                    <h3 class="titulo-lista">Lista de tareas</h3>
+                    <p class="mensaje"></p>
                 </div>
                 <ul class="todo_list">
                     <!-- <li class="tarea">
